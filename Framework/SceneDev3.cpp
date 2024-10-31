@@ -62,8 +62,8 @@ void SceneDev3::Init()
 	tree2->SetPosition({ 1920.f / 1.3f, 1080.f - 200.f });
 	player->SetPosition({ 1920.f / 4.5f, 1080.f - 200.f });
 	player2->SetPosition({ 1920.f / 1.3f, 1080.f - 200.f });
-	back->SetOrigin(Origins::TL);
-	back->SetPosition({ 0,0 });
+	back->SetOrigin(Origins::TR);
+	back->SetPosition({ 1920,0 });
 	centerMsg->text.setCharacterSize(100);
 	centerMsg->text.setFillColor(sf::Color::White);
 	centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f });
