@@ -13,7 +13,7 @@
 #include "UiTimebar2.h"
 #include "ParticleEffect.h"
 
-SceneDev3::SceneDev3() : Scene(SceneIds::Dev1)
+SceneDev3::SceneDev3() : Scene(SceneIds::Dev3)
 {
 }
 
@@ -69,9 +69,7 @@ void SceneDev3::Init()
 
 	uiScore->text.setCharacterSize(75);
 	uiScore->text.setFillColor(sf::Color::White);
-<<<<<<< HEAD:Framework/SceneDev3.cpp
 	uiScore->SetPosition({ 10.f, 30.f });
-
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
 	uiTimer->SetPosition({ 1920.f / 4.5f - 250.f, 1080.f - 100.f });
@@ -83,16 +81,9 @@ void SceneDev3::Init()
 	uiTimer2->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer2->SetOrigin(Origins::ML);
 	uiTimer2->SetPosition({ 1920.f / 1.3f - 250.f, 1080.f - 100.f });
-=======
-	uiScore->SetPosition({ 30.f, 30.f });
-
-	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
-	uiTimer->SetOrigin(Origins::ML);
-	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
 
 
 	popEffect.Init(this, nullptr, 10);
->>>>>>> origin/main:Framework/SceneDev1.cpp
 }
 
 void SceneDev3::Enter()
@@ -151,11 +142,7 @@ void SceneDev3::Exit()
 
 }
 
-<<<<<<< HEAD:Framework/SceneDev3.cpp
 void SceneDev3::Update(float dt)
-=======
-void SceneDev1::Update(float dt)
->>>>>>> origin/main:Framework/SceneDev1.cpp
 {
 	Scene::Update(dt);
 
@@ -231,6 +218,7 @@ void SceneDev3::SetStatus(Status newStatus)
 		score2 = 0;
 		timer2 = gameTime;
 		SetScore(score);
+		SetScore2(score2);
 		uiTimer->SetValue(1.f);
 		uiTimer2->SetValue(1.f);
 		break;
@@ -243,7 +231,7 @@ void SceneDev3::SetStatus(Status newStatus)
 			timer2 = gameTime;
 
 			SetScore(score);
-			SetScore(score2);
+			SetScore2(score2);
 			uiTimer->SetValue(1.f);
 			uiTimer2->SetValue(1.f);
 			player->Reset();

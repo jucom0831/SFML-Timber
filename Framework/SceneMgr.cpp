@@ -7,7 +7,7 @@
 void SceneMgr::Init()
 {
 	scenes.push_back(new SceneTitle());
-	scenes.push_back(new SceneDev1());
+	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneDev3());	
 
@@ -16,7 +16,7 @@ void SceneMgr::Init()
 		scene->Init();
 	}
 
-	currentScene = startScene;
+	currentScene = SceneIds::Dev3;
 	scenes[(int)currentScene]->Enter();
 }
 
