@@ -36,8 +36,8 @@ void SceneDev1::Init()
 	TEXTURE_MGR.Load("graphics/axe.png");
 
 	tree = AddGo(new Tree("Tree"));
-	player = AddGo(new Player("Player"));
-
+	player = AddGo(new Player("player"));
+	player->SetSprite("graphics/player.png");
 
 	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
 	centerMsg->sortingLayer = SortingLayers::UI;

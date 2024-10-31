@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "SceneDev1.h"	
 #include "SceneDev3.h"	
 
 Player::Player(const std::string& name) : GameObject(name)
@@ -27,6 +28,13 @@ void Player::SetSide(Sides s)
 	spriteRip.setPosition(newPos + localRipAxe);
 }
 
+void Player::SetSprite(std::string textureid)
+{
+	texIdPlayer = textureid;
+	spritePlayer.setTexture(TEXTURE_MGR.Get(textureid));
+	SetOrigin(Origins::BC);
+}
+
 void Player::SetPosition(const sf::Vector2f& pos)
 {
 	position = pos;
@@ -37,8 +45,6 @@ void Player::OnDie()
 {
 	isAlive = false;
 	isChppoing = false;
-
-
 }
 
 void Player::SetScale(const sf::Vector2f& scale)
@@ -61,20 +67,20 @@ void Player::SetOrigin(Origins preset)
 	if (preset != Origins::Custom)
 	{
 		origin = Utils::SetOrigin(spritePlayer, preset);
+		
 	}
 }
-
 void Player::SetOrigin(const sf::Vector2f& newOrigin)
 {
 	originPreset = Origins::Custom;
 	origin = newOrigin;
 	spritePlayer.setOrigin(origin);
+
 }
+
 
 void Player::Init()
 {
-	spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer));
-	SetOrigin(Origins::BC);
 
 	spriteAxe.setTexture(TEXTURE_MGR.Get(texIdAxe));
 	spriteAxe.setOrigin(originAxe);
@@ -87,12 +93,13 @@ void Player::Reset()
 {
 	sfxChop.setBuffer(SOUNDBUFFER_MGR.Get(sbIdChop));
 
-	spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer));
+
 	spriteAxe.setTexture(TEXTURE_MGR.Get(texIdAxe));
 	spriteRip.setTexture(TEXTURE_MGR.Get(texIdRip));
 
 	isAlive = true;
 	isChppoing = false;
+	isChppoing2 = false;
 	SetPosition(position);
 	SetScale({ 1.f, 1.f });
 	SetSide(Sides::Right);
@@ -108,30 +115,57 @@ void Player::Update(float dt)
 {
 	if (!isAlive)
 		return;
+	if (texIdPlayer == "graphics/player.png") {
+		if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+		{
+			isChppoing = true;
+			SetSide(Sides::Left);
+			dynamic_cast<SceneDev3*>(sceneGame)->OnChop(Sides::Left);
+			sfxChop.play();
+		}
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
-	{
-		isChppoing = true;
-		SetSide(Sides::Left);
-		sceneGame->OnChop(Sides::Left);
-		sfxChop.play();
+		if (InputMgr::GetKeyUp(sf::Keyboard::Left))
+		{
+			isChppoing = false;
+		}
+
+		if (InputMgr::GetKeyDown(sf::Keyboard::Right))
+		{
+			isChppoing = true;
+			SetSide(Sides::Right);
+			dynamic_cast<SceneDev3*>(sceneGame)->OnChop(Sides::Right);
+		}
+
+		if (InputMgr::GetKeyUp(sf::Keyboard::Right))
+		{
+			isChppoing = false;
+		}
 	}
+	if (texIdPlayer == "graphics/player2.png") {
+		if (InputMgr::GetKeyDown(sf::Keyboard::A))
+		{
+			isChppoing2 = true;
+			SetSide(Sides::Left);
+			dynamic_cast<SceneDev3*>(sceneGame)->OnChop2(Sides::Left);
+			sfxChop.play();
+		}
 
-	if (InputMgr::GetKeyUp(sf::Keyboard::Left))
-	{
-		isChppoing = false;
-	}
+		if (InputMgr::GetKeyUp(sf::Keyboard::A))
+		{
+			isChppoing2 = false;
+		}
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
-	{
-		isChppoing = true;
-		SetSide(Sides::Right);
-		sceneGame->OnChop(Sides::Right);
-	}
+		if (InputMgr::GetKeyDown(sf::Keyboard::D))
+		{
+			isChppoing2 = true;
+			SetSide(Sides::Right);
+			dynamic_cast<SceneDev3*>(sceneGame)->OnChop2(Sides::Right);
+		}
 
-	if (InputMgr::GetKeyUp(sf::Keyboard::Right))
-	{
-		isChppoing = false;
+		if (InputMgr::GetKeyUp(sf::Keyboard::D))
+		{
+			isChppoing2 = false;
+		}
 	}
 }
 
@@ -144,14 +178,22 @@ void Player::Draw(sf::RenderWindow& window)
 		{
 			window.draw(spriteAxe);
 		}
+		if (isChppoing2)
+		{
+			window.draw(spriteAxe);
+		}
+	
 	}
+
+	
 	else
 	{
 		window.draw(spriteRip);
 	}
+
 }
 
-void Player::SetSceneGame(SceneDev3* scene)
+void Player::SetSceneGame(Scene* scene)
 {
 	sceneGame = scene;
 }

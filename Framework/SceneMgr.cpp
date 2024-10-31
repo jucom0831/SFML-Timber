@@ -1,13 +1,14 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
-#include "SceneDev3.h"
+#include "SceneDev1.h"
 #include "SceneDev2.h"
+#include "SceneDev3.h"
 #include "SceneTitle.h"
 
 void SceneMgr::Init()
 {
 	scenes.push_back(new SceneTitle());
-	scenes.push_back(new SceneDev2());
+	scenes.push_back(new SceneDev1());
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneDev3());	
 
@@ -16,7 +17,7 @@ void SceneMgr::Init()
 		scene->Init();
 	}
 
-	currentScene = SceneIds::Dev3;
+	currentScene = SceneIds::Dev1;
 	scenes[(int)currentScene]->Enter();
 }
 

@@ -1,14 +1,12 @@
 #pragma once
 #include "GameObject.h"
 
-class SceneDev3;
+class Scene;
 
 class Player : public GameObject
 {
 protected:
 	sf::Sound sfxChop;
-
-
 	sf::Sprite spritePlayer;
 	sf::Sprite spriteAxe;
 	sf::Sprite spriteRip;
@@ -28,8 +26,10 @@ protected:
 
 	bool isAlive = true;
 	bool isChppoing = false;
+	bool isChppoing2 = false;
 
-	SceneDev3* sceneGame = nullptr;
+
+	Scene* sceneGame = nullptr;
 
 public:
 	Player(const std::string& name = "");
@@ -39,6 +39,7 @@ public:
 	void SetSide(Sides s);
 	void OnDie();
 
+	void SetSprite(std::string textureid);
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetScale(const sf::Vector2f& scale) override;
 	void SetOrigin(Origins preset) override;
@@ -51,6 +52,6 @@ public:
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window)  override;
 
-	void SetSceneGame(SceneDev3* scene);
+	void SetSceneGame(Scene* scene);
 };
 

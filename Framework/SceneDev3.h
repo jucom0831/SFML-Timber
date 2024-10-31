@@ -31,7 +31,7 @@ protected:
 	Tree* tree;
 	Tree2* tree2;
 	Player* player;
-	Player2* player2;
+	Player* player2;
 
 	TextGo* centerMsg;
 	UiScore* uiScore;

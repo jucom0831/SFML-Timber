@@ -18,7 +18,6 @@
     <ClCompile Include="Framework\SpriteGo.cpp" />
     <ClCompile Include="Framework\stdafx.cpp" />
     <ClCompile Include="Framework\TextGo.cpp" />
-    <ClCompile Include="Player2.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Tree2.cpp" />
     <ClCompile Include="UiScore.cpp" />
@@ -29,6 +28,7 @@
     <ClCompile Include="EffectGo.cpp" />
     <ClCompile Include="ParticleEffect.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="Framework\SceneDev1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Branch.h" />
@@ -51,7 +51,6 @@
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
-    <ClInclude Include="Player2.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="Tree2.h" />
     <ClInclude Include="UiScore.h" />
@@ -63,5 +62,6 @@
     <ClInclude Include="ObjectPoolable.h" />
     <ClInclude Include="ParticleEffect.h" />
     <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="Framework\SceneDev1.h" />
   </ItemGroup>
 </Project>
