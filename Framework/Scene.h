@@ -29,6 +29,7 @@ public:
 	T* AddGo(T* obj)
 	{
 		addGameObjects.push_back(obj);
+		obj->SetScene(this);
 		return obj;
 	}
 

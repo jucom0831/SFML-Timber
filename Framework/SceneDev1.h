@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "ParticleEffect.h"
 
 class Tree;
 class Player;
@@ -37,6 +38,8 @@ protected:
 
 	std::string sbIdDeath = "sound/death.wav";
 	std::string sbIdTimeOut = "sound/out_of_time.wav";
+
+	ObjectPool<ParticleEffect> popEffect;
 
 public:
 	SceneDev1();

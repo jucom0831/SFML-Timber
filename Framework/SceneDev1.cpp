@@ -7,6 +7,7 @@
 #include "TextGo.h"
 #include "UiScore.h"
 #include "UiTimebar.h"
+#include "ParticleEffect.h"
 
 SceneDev1::SceneDev1() : Scene(SceneIds::Dev1)
 {
@@ -57,10 +58,13 @@ void SceneDev1::Init()
 	uiScore->text.setCharacterSize(75);
 	uiScore->text.setFillColor(sf::Color::White);
 	uiScore->SetPosition({ 30.f, 30.f });
-	
+
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
 	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
+
+
+	popEffect.Init(this, nullptr, 10);
 }
 
 void SceneDev1::Enter()
@@ -73,6 +77,7 @@ void SceneDev1::Enter()
 	TEXTURE_MGR.Load("graphics/player.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
+	TEXTURE_MGR.Load("graphics/dust.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Load("sound/chop.wav");
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
@@ -105,6 +110,7 @@ void SceneDev1::Exit()
 	TEXTURE_MGR.Unload("graphics/player.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
+	TEXTURE_MGR.Unload("graphics/dust.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Unload("sound/chop.wav");
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
@@ -113,7 +119,7 @@ void SceneDev1::Exit()
 }
 
 void SceneDev1::Update(float dt)
-{ 
+{
 	Scene::Update(dt);
 
 
@@ -137,6 +143,12 @@ void SceneDev1::Update(float dt)
 		UpdatePause(dt);
 		break;
 	}
+
+	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+	{
+		popEffect.Take()->Effect(sf::Vector2f(sf::Mouse::getPosition()), 3, 10);
+	}
+	popEffect.Update();
 }
 
 void SceneDev1::Draw(sf::RenderWindow& window)

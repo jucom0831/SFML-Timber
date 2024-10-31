@@ -1,5 +1,6 @@
 #pragma once
 
+class Scene;
 class GameObject
 {
 protected:
@@ -12,13 +13,16 @@ protected:
 
 	Origins originPreset;
 	sf::Vector2f origin;
+	Scene* owner;
 
 public:
 	SortingLayers sortingLayer = SortingLayers::Default;
 	int sortingOrder = 0;
 
-	GameObject(const std::string& name = "");
+	GameObject(const std::string& name = "", Scene* scene=nullptr);
 	virtual ~GameObject() = default;
+
+	void SetScene(Scene* scene);
 
 	const std::string& GetName() const { return name; }
 	void SetName(const std::string& n) { name = n; }
