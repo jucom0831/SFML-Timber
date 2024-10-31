@@ -108,7 +108,8 @@ void SceneDev3::Enter()
 
 	player->SetSceneGame(this);
 	player2->SetSceneGame(this);
-
+	player->SetSprite("graphics/player.png");
+	player2->SetSprite("graphics/player2.png");
 	Scene::Enter();
 
 	SetStatus(Status::Awake);
