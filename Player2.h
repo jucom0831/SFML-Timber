@@ -3,19 +3,18 @@
 
 class SceneDev3;
 
-class Player : public GameObject
+class Player2 : public GameObject
 {
 protected:
 	sf::Sound sfxChop;
 
 
-	sf::Sprite spritePlayer;
+	sf::Sprite spritePlayer2;
 	sf::Sprite spriteAxe;
 	sf::Sprite spriteRip;
 
 	std::string sbIdChop = "sound/chop.wav";
-	std::string texIdPlayer = "graphics/player.png";
-	std::string texIdPlayer2 = "graphics/player2.png";
+	std::string texIdPlayer = "graphics/player2.png";
 	std::string texIdAxe = "graphics/axe.png";
 	std::string texIdRip = "graphics/rip.png";
 
@@ -27,16 +26,14 @@ protected:
 
 	sf::Vector2f originAxe = { -65.f, 0.f };
 
-	bool isAlive = true;
-	bool isChppoing = false;
+	bool isAlive2 = true;
+	bool isChppoing2 = false;
 
-	SceneDev3* sceneGame = nullptr;
+	SceneDev3* sceneGame2 = nullptr;
 
 public:
-	static bool isplayer1;
-
-	Player(const std::string& name = "");
-	virtual ~Player() = default;
+	Player2(const std::string& name = "");
+	virtual ~Player2() = default;
 
 	Sides GetSide() const { return side; }
 	void SetSide(Sides s);
@@ -54,6 +51,6 @@ public:
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window)  override;
 
-	void SetSceneGame(SceneDev3* scene);
+	void SetSceneGame2(SceneDev3* scene);
 };
 

@@ -1,10 +1,15 @@
 #include "stdafx.h"
 #include "GameObject.h"
 
-GameObject::GameObject(const std::string& name)
-	: name(name), originPreset(Origins::TL)
+GameObject::GameObject(const std::string& name, Scene* scene)
+	: name(name), originPreset(Origins::TL), owner(scene)
 {
 
+}
+
+void GameObject::SetScene(Scene* scene)
+{
+	owner = scene;
 }
 
 void GameObject::SetOrigin(Origins preset)
@@ -23,6 +28,7 @@ void GameObject::Release()
 
 void GameObject::Reset()
 {
+	owner = SCENE_MGR.GetCurrentScene();
 }
 
 void GameObject::Update(float dt)

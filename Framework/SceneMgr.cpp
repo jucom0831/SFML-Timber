@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
-#include "SceneDev1.h"
+#include "SceneDev3.h"
 #include "SceneDev2.h"
 #include "SceneTitle.h"
 #include "SceneSelect.h"
@@ -10,6 +10,7 @@ void SceneMgr::Init()
 	scenes.push_back(new SceneTitle());
 	scenes.push_back(new SceneDev1());
 	scenes.push_back(new SceneDev2());
+	scenes.push_back(new SceneDev3());	
 	scenes.push_back(new SceneSelect());
 	scenes.push_back(new SceneModSelect());
 
@@ -18,7 +19,7 @@ void SceneMgr::Init()
 		scene->Init();
 	}
 
-	currentScene = SceneIds::ModSelect;
+	currentScene = SceneIds::Title;
 	scenes[(int)currentScene]->Enter();
 }
 

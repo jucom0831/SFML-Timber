@@ -1,14 +1,14 @@
 #pragma once
 #include "GameObject.h"
-#include "EffectLog.h"
+#include "EffectLog2.h"
 
-class Branch;
+class Branch2;
 
-class Tree : public GameObject
+class Tree2 : public GameObject
 {
 protected:
-	sf::Sprite tree;
-	std::list<Branch*> branches;
+	sf::Sprite tree2;
+	std::list<Branch2*> branches2;
 
 	int branchCount = 6;
 	std::string treeTexId = "graphics/tree.png";
@@ -16,17 +16,17 @@ protected:
 
 	float brachOffsetY = 150.f;
 
-	ObjectPool<EffectLog> effectLogPool;
-	std::list<EffectLog*> logEffects;
+	ObjectPool<EffectLog2> effectLogPool;
+	std::list<EffectLog2*> logEffects;
 
 public:
-	Tree(const std::string& name = "");
-	~Tree();
+	Tree2(const std::string& name = "");
+	~Tree2();
 
 	Sides RandomSide() const;
-	Sides Chop(Sides side);
+	Sides Chop2(Sides side);
 
-	void UpdateBranchPos();
+	void UpdateBranchPos2();
 
 	void Init() override;
 	void Release() override;
@@ -37,7 +37,6 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 
 	void SetPosition(const sf::Vector2f& pos) override;
-	void SetScale(const sf::Vector2f& treescale);
 
 	void ClearEffectLog();
 };

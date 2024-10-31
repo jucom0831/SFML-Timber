@@ -9,6 +9,7 @@ protected:
 	std::list<GameObject*> removeGameObjects;
 
 public:
+
 	Scene(SceneIds id);
 	virtual ~Scene() = default;
 
@@ -29,6 +30,7 @@ public:
 	T* AddGo(T* obj)
 	{
 		addGameObjects.push_back(obj);
+		obj->SetScene(this);
 		return obj;
 	}
 

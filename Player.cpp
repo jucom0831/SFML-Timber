@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "SceneDev1.h"	
 #include "SceneSelect.h"
 #include "ButtonGo.h"
+#include "SceneDev3.h"	
 
 bool Player::isplayer1 = true;
 
@@ -154,7 +154,6 @@ void Player::Update(float dt)
 		isChppoing = true;
 		SetSide(Sides::Right);
 		sceneGame->OnChop(Sides::Right);
-		sceneGame->OnChop(Sides::Left);
 	}
 
 	if (InputMgr::GetKeyUp(sf::Keyboard::Right))
@@ -179,7 +178,7 @@ void Player::Draw(sf::RenderWindow& window)
 	}
 }
 
-void Player::SetSceneGame(SceneDev1* scene)
+void Player::SetSceneGame(SceneDev3* scene)
 {
 	sceneGame = scene;
 }
