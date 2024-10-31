@@ -12,10 +12,9 @@ enum class SceneIds
 {
 	None = -1,
 	Title,
-	Dev1,
+	MultiGame,
 	Dev2,
 	Dev3,
-	MultiGame,
 	Count,
 };
 

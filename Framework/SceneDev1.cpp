@@ -8,7 +8,7 @@
 #include "UiScore.h"
 #include "UiTimebar.h"
 
-SceneDev1::SceneDev1() : Scene(SceneIds::Dev1)
+SceneDev1::SceneDev1() : Scene(SceneIds::Dev2)
 {
 }
 
@@ -93,7 +93,7 @@ void SceneDev1::Exit()
 	std::cout << "SceneDev1::Exit()" << std::endl;
 
 	player->SetSceneGame(nullptr);
-	tree->ClearEffectLog();
+	//tree->ClearEffectLog();
 
 	Scene::Exit();
 

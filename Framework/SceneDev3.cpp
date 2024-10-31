@@ -118,7 +118,7 @@ void SceneDev3::Exit()
 
 	player->SetSceneGame(nullptr);
 	player2->SetSceneGame(nullptr);
-	tree->ClearEffectLog();
+	//tree->ClearEffectLog();
 	tree2->ClearEffectLog();
 
 	Scene::Exit();
