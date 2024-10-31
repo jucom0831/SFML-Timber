@@ -6,6 +6,7 @@ protected:
 	std::string name;
 	
 	bool active = true;
+	bool active2 = true;
 
 	sf::Vector2f position;
 	sf::Vector2f scale;
@@ -25,6 +26,8 @@ public:
 
 	bool IsActive() const { return active; }
 	void SetActive(bool a) { active = a; }
+	bool IsActive2() const { return active2; }
+	void SetActive2(bool b) { active2 = b; }
 
 	sf::Vector2f GetPosition() const { return position; }
 	virtual void SetPosition(const sf::Vector2f& pos) { position = pos; }

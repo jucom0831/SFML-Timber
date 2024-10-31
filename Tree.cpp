@@ -78,26 +78,27 @@ void Tree::Reset()
 
 void Tree::Update(float dt)
 {
-	for (auto branch : branches)
-	{
-		branch->Update(dt);
-	}
+		for (auto branch : branches)
+		{
+			branch->Update(dt);
+		}
 
-	auto it = logEffects.begin();
-	while (it != logEffects.end())
-	{
-		auto logEffect = *it;
-		if (!logEffect->IsActive())
+		auto it = logEffects.begin();
+		while (it != logEffects.end())
 		{
-			effectLogPool.Return(logEffect);
-			SCENE_MGR.GetCurrentScene()->RemoveGo(logEffect);
-			it = logEffects.erase(it);
+			auto logEffect = *it;
+			if (!logEffect->IsActive())
+			{
+				effectLogPool.Return(logEffect);
+				SCENE_MGR.GetCurrentScene()->RemoveGo(logEffect);
+				it = logEffects.erase(it);
+			}
+			else
+			{
+				++it;
+			}
 		}
-		else
-		{
-			++it;
-		}
-	}
+	
 }
 
 void Tree::Draw(sf::RenderWindow& window)
@@ -119,6 +120,12 @@ void Tree::SetPosition(const sf::Vector2f& pos)
 	UpdateBranchPos();
 }
 
+void Tree::SetScale(const sf::Vector2f& treescale)
+{
+	scale = treescale;
+	tree.setScale(treescale);
+}
+
 void Tree::ClearEffectLog()
 {
 	for (auto log : logEffects)
@@ -133,12 +140,12 @@ Sides Tree::Chop(Sides side)
 {
 	if (side != Sides::None)
 	{
-		EffectLog* effect = effectLogPool.Take();
-		SCENE_MGR.GetCurrentScene()->AddGo(effect);
-		effect->SetOrigin(Origins::BC);
-		effect->SetPosition(position);
-		effect->Fire({ side == Sides::Right ? -1000.f : 1000.f, -1000.f });
-		logEffects.push_back(effect);
+			EffectLog* effect = effectLogPool.Take();
+			SCENE_MGR.GetCurrentScene()->AddGo(effect);
+			effect->SetOrigin(Origins::BC);
+			effect->SetPosition(position);
+			effect->Fire({ side == Sides::Right ? -1000.f : 1000.f, -1000.f });
+			logEffects.push_back(effect);
 	}
 
 	Branch* temp = branches.front();
@@ -148,6 +155,7 @@ Sides Tree::Chop(Sides side)
 	UpdateBranchPos();
 	return branches.front()->GetSide();
 }
+
 
 void Tree::UpdateBranchPos()
 {

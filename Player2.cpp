@@ -1,14 +1,14 @@
 #include "stdafx.h"
-#include "Player.h"
+#include "Player2.h"
 #include "SceneDev3.h"	
 
-Player::Player(const std::string& name) : GameObject(name)
+Player2::Player2(const std::string& name) : GameObject(name)
 {
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;
 }
 
-void Player::SetSide(Sides s)
+void Player2::SetSide(Sides s)
 {
 	side = s;
 
@@ -22,29 +22,29 @@ void Player::SetSide(Sides s)
 	}
 
 	sf::Vector2f newPos = position + localPosPlayer[(int)s];
-	spritePlayer.setPosition(newPos);
+	spritePlayer2.setPosition(newPos);
 	spriteAxe.setPosition(newPos + localPosAxe);
 	spriteRip.setPosition(newPos + localRipAxe);
 }
 
-void Player::SetPosition(const sf::Vector2f& pos)
+void Player2::SetPosition(const sf::Vector2f& pos)
 {
 	position = pos;
 	SetSide(side);
 }
 
-void Player::OnDie()
+void Player2::OnDie()
 {
-	isAlive = false;
-	isChppoing = false;
+	isAlive2 = false;
+	isChppoing2 = false;
 
 
 }
 
-void Player::SetScale(const sf::Vector2f& scale)
+void Player2::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;
-	spritePlayer.setScale(this->scale);
+	spritePlayer2.setScale(this->scale);
 
 	sf::Vector2f axeScale = this->scale;
 	axeScale.x *= -1.f;
@@ -55,25 +55,25 @@ void Player::SetScale(const sf::Vector2f& scale)
 	spriteRip.setScale(axeRip);
 }
 
-void Player::SetOrigin(Origins preset)
+void Player2::SetOrigin(Origins preset)
 {
 	originPreset = preset;
 	if (preset != Origins::Custom)
 	{
-		origin = Utils::SetOrigin(spritePlayer, preset);
+		origin = Utils::SetOrigin(spritePlayer2, preset);
 	}
 }
 
-void Player::SetOrigin(const sf::Vector2f& newOrigin)
+void Player2::SetOrigin(const sf::Vector2f& newOrigin)
 {
 	originPreset = Origins::Custom;
 	origin = newOrigin;
-	spritePlayer.setOrigin(origin);
+	spritePlayer2.setOrigin(origin);
 }
 
-void Player::Init()
+void Player2::Init()
 {
-	spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer));
+	spritePlayer2.setTexture(TEXTURE_MGR.Get(texIdPlayer));
 	SetOrigin(Origins::BC);
 
 	spriteAxe.setTexture(TEXTURE_MGR.Get(texIdAxe));
@@ -83,64 +83,65 @@ void Player::Init()
 	Utils::SetOrigin(spriteRip, Origins::BC);
 }
 
-void Player::Reset()
+void Player2::Reset()
 {
 	sfxChop.setBuffer(SOUNDBUFFER_MGR.Get(sbIdChop));
 
-	spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer));
+	spritePlayer2.setTexture(TEXTURE_MGR.Get(texIdPlayer));
 	spriteAxe.setTexture(TEXTURE_MGR.Get(texIdAxe));
 	spriteRip.setTexture(TEXTURE_MGR.Get(texIdRip));
 
-	isAlive = true;
-	isChppoing = false;
+	isAlive2 = true;
+	isChppoing2 = false;
 	SetPosition(position);
 	SetScale({ 1.f, 1.f });
 	SetSide(Sides::Right);
 }
 
 
-void Player::Release()
+void Player2::Release()
 {
 }
 
 
-void Player::Update(float dt)
+void Player2::Update(float dt)
 {
-	if (!isAlive)
+	if (!isAlive2)
 		return;
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+	if (InputMgr::GetKeyDown(sf::Keyboard::A))
 	{
-		isChppoing = true;
+		isChppoing2 = true;
 		SetSide(Sides::Left);
-		sceneGame->OnChop(Sides::Left);
+		sceneGame2->OnChop2(Sides::Left);
 		sfxChop.play();
 	}
 
-	if (InputMgr::GetKeyUp(sf::Keyboard::Left))
+	if (InputMgr::GetKeyUp(sf::Keyboard::A))
 	{
-		isChppoing = false;
+		isChppoing2 = false;
 	}
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
+	if (InputMgr::GetKeyDown(sf::Keyboard::D))
 	{
-		isChppoing = true;
+		isChppoing2 = true;
 		SetSide(Sides::Right);
-		sceneGame->OnChop(Sides::Right);
+		sceneGame2->OnChop2(Sides::Right);
 	}
 
-	if (InputMgr::GetKeyUp(sf::Keyboard::Right))
+	if (InputMgr::GetKeyUp(sf::Keyboard::D))
 	{
-		isChppoing = false;
+		isChppoing2 = false;
+		isChppoing2 = false;
 	}
 }
 
-void Player::Draw(sf::RenderWindow& window)
+void Player2::Draw(sf::RenderWindow& window)
 {
-	if (isAlive)
+	if (isAlive2)
 	{
-		window.draw(spritePlayer);
-		if (isChppoing)
+		window.draw(spritePlayer2);
+		if (isChppoing2)
 		{
 			window.draw(spriteAxe);
 		}
@@ -151,7 +152,7 @@ void Player::Draw(sf::RenderWindow& window)
 	}
 }
 
-void Player::SetSceneGame(SceneDev3* scene)
+void Player2::SetSceneGame2(SceneDev3* scene)
 {
-	sceneGame = scene;
+	sceneGame2 = scene;
 }
