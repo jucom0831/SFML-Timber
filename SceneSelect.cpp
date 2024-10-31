@@ -2,7 +2,6 @@
 #include "SceneSelect.h"
 #include "SpriteGo.h"
 #include "ButtonGo.h"
-#include "SpriteGo.h"
 #include "SceneMgr.h"
 #include "Player.h"
 

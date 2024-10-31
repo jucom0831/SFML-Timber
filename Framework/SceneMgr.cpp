@@ -4,20 +4,21 @@
 #include "SceneDev2.h"
 #include "SceneTitle.h"
 #include "SceneSelect.h"
-
+#include "SceneModSelect.h"
 void SceneMgr::Init()
 {
 	scenes.push_back(new SceneTitle());
 	scenes.push_back(new SceneDev1());
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneSelect());
+	scenes.push_back(new SceneModSelect());
 
 	for (auto scene : scenes)
 	{
 		scene->Init();
 	}
 
-	currentScene = SceneIds::Select;
+	currentScene = SceneIds::ModSelect;
 	scenes[(int)currentScene]->Enter();
 }
 
