@@ -33,6 +33,8 @@ public:
 	virtual void Init(int width, int height, const std::string& name);
 	virtual void Do();
 	virtual void Release();
+
+	sf::RenderWindow& GetWindow() { return window; }
 };
 
 #define FRAMEWORK (Framework::Instance())

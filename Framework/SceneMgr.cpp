@@ -3,19 +3,21 @@
 #include "SceneDev1.h"
 #include "SceneDev2.h"
 #include "SceneTitle.h"
+#include "SceneSelect.h"
 
 void SceneMgr::Init()
 {
 	scenes.push_back(new SceneTitle());
 	scenes.push_back(new SceneDev1());
 	scenes.push_back(new SceneDev2());
+	scenes.push_back(new SceneSelect());
 
 	for (auto scene : scenes)
 	{
 		scene->Init();
 	}
 
-	currentScene = startScene;
+	currentScene = SceneIds::Select;
 	scenes[(int)currentScene]->Enter();
 }
 
