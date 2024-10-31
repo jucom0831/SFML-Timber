@@ -11,6 +11,7 @@
 #include "Tree2.h"
 #include "UiScore2.h"
 #include "UiTimebar2.h"
+#include "ParticleEffect.h"
 
 SceneDev3::SceneDev3() : Scene(SceneIds::Dev1)
 {
@@ -68,6 +69,7 @@ void SceneDev3::Init()
 
 	uiScore->text.setCharacterSize(75);
 	uiScore->text.setFillColor(sf::Color::White);
+<<<<<<< HEAD:Framework/SceneDev3.cpp
 	uiScore->SetPosition({ 10.f, 30.f });
 
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
@@ -81,6 +83,16 @@ void SceneDev3::Init()
 	uiTimer2->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer2->SetOrigin(Origins::ML);
 	uiTimer2->SetPosition({ 1920.f / 1.3f - 250.f, 1080.f - 100.f });
+=======
+	uiScore->SetPosition({ 30.f, 30.f });
+
+	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
+	uiTimer->SetOrigin(Origins::ML);
+	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
+
+
+	popEffect.Init(this, nullptr, 10);
+>>>>>>> origin/main:Framework/SceneDev1.cpp
 }
 
 void SceneDev3::Enter()
@@ -94,6 +106,7 @@ void SceneDev3::Enter()
 	TEXTURE_MGR.Load("graphics/player2.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
+	TEXTURE_MGR.Load("graphics/dust.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Load("sound/chop.wav");
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
@@ -130,6 +143,7 @@ void SceneDev3::Exit()
 	TEXTURE_MGR.Unload("graphics/player2.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
+	TEXTURE_MGR.Unload("graphics/dust.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Unload("sound/chop.wav");
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
@@ -137,7 +151,11 @@ void SceneDev3::Exit()
 
 }
 
+<<<<<<< HEAD:Framework/SceneDev3.cpp
 void SceneDev3::Update(float dt)
+=======
+void SceneDev1::Update(float dt)
+>>>>>>> origin/main:Framework/SceneDev1.cpp
 {
 	Scene::Update(dt);
 
@@ -162,6 +180,12 @@ void SceneDev3::Update(float dt)
 		UpdatePause(dt);
 		break;
 	}
+
+	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+	{
+		popEffect.Take()->Effect(sf::Vector2f(sf::Mouse::getPosition()), 3, 10);
+	}
+	popEffect.Update();
 }
 
 void SceneDev3::Draw(sf::RenderWindow& window)

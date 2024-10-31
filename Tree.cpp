@@ -44,6 +44,8 @@ void Tree::Init()
 		branch->SetSide(RandomSide());
 		branches.push_back(branch);
 	}
+
+	effectLogPool.Init(owner, new EffectLog(), 10);
 }
 
 void Tree::Release()

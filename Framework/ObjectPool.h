@@ -1,32 +1,72 @@
 #pragma once
-
+#include "Scene.h"
+#include "ObjectPoolable.h"
 template<typename T>
 class ObjectPool
 {
 private:
 	std::list<T*> unused;
 	std::list<T*> used;
-
+	bool isObjectPoolable;
+	std::queue<T*> haveToErase;
 public:
-	ObjectPool(int initSize = 10)
+	ObjectPool()
 	{
-		for (int i = 0; i < initSize; ++i)
-		{
-			auto obj = new T();
-			obj->Init();
-			unused.push_back(obj);
-		}
+		T temp;
+		isObjectPoolable = dynamic_cast<ObjectPoolable*>(&temp) != nullptr;
 	}
 
 	~ObjectPool()
 	{
-		for (auto obj : unused)
+	}
+
+	void Init(Scene* scene, T* copy = nullptr, int initSize = 10)
+	{
+		if (copy)
 		{
-			delete obj;
+			for (int i = 0; i < initSize; ++i)
+			{
+				auto obj = scene->AddGo(new T(*copy));
+				unused.push_back(obj);
+			}
+			delete copy;
 		}
-		for (auto obj : used)
+		else
 		{
-			delete obj;
+			for (int i = 0; i < initSize; ++i)
+			{
+				auto obj = scene->AddGo(new T());
+				unused.push_back(obj);
+			}
+		}
+	}
+
+	void Update()
+	{
+		if (isObjectPoolable)
+		{
+			for (auto obj = used.begin(); obj != used.end();)
+			{
+				if ((*obj)->IsSatisfiedCondition())
+				{
+					(*obj)->SetActive(false);
+					(*obj)->Reset();
+					unused.push_back(*obj);
+					used.remove(*obj);
+				}
+				else
+				{
+					obj++;
+				}
+			}
+		}
+
+		while (!haveToErase.empty())
+		{
+			auto find = std::find(used.begin(), used.end(), haveToErase.front());
+			unused.push_back(*find);
+			used.erase(find);
+			haveToErase.pop();
 		}
 	}
 
@@ -34,7 +74,7 @@ public:
 	{
 		if (unused.empty())
 		{
-			auto obj = new T();
+			auto obj = SCENE_MGR.GetCurrentScene()->AddGo(new T());
 			obj->Init();
 			obj->Reset();
 			used.push_back(obj);
@@ -57,8 +97,8 @@ public:
 			std::cout << "Invaild Obj" << std::endl;
 			return;
 		}
-		used.erase(find);
 		obj->SetActive(false);
-		unused.push_back(obj);
+		obj->Reset();
+		haveToErase.push(obj);
 	}
 };
