@@ -31,7 +31,7 @@ void SceneTitle::Enter()
 void SceneTitle::Exit()
 {
 	std::cout << "SceneTitle::Exit()" << std::endl;
-	Scene::Exit();
+	Scene::Exit(); 
 	TEXTURE_MGR.Unload("graphics/background1.png");
 }
 
@@ -41,7 +41,7 @@ void SceneTitle::Update(float dt)
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev1);
+		SCENE_MGR.ChangeScene(SceneIds::Dev3);
 	}
 }
 

@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
-#include "SceneTitle.h"
-#include "SceneDev2.h"
 #include "SceneDev3.h"
+#include "SceneDev2.h"
+#include "SceneTitle.h"
 #include "SceneGame.h"
 
 void SceneMgr::Init()
 {
 	scenes.push_back(new SceneTitle());
-	scenes.push_back(new SceneDev2());
+	scenes.push_back(new SceneDev1());
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneDev3());	
 	scenes.push_back(new SceneGame(3));
@@ -18,7 +18,7 @@ void SceneMgr::Init()
 		scene->Init();
 	}
 
-	currentScene = SceneIds::MultiGame;
+	currentScene = SceneIds::Dev3;
 	scenes[(int)currentScene]->Enter();
 }
 

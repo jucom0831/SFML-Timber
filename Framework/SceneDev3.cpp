@@ -7,7 +7,6 @@
 #include "TextGo.h"
 #include "UiScore.h"
 #include "UiTimebar.h"
-#include "Player2.h"
 #include "Tree2.h"
 #include "UiScore2.h"
 #include "UiTimebar2.h"
@@ -42,9 +41,10 @@ void SceneDev3::Init()
 
 	tree = AddGo(new Tree("Tree"));
 	tree2 = AddGo(new Tree2("Tree"));
-	player = AddGo(new Player("Player"));
-	player2 = AddGo(new Player2("Player2"));
-
+	player = AddGo(new Player("player"));
+	player2 = AddGo(new Player("player"));
+	player->SetSprite("graphics/player.png");
+	player2->SetSprite("graphics/player2.png");
 
 	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
 	centerMsg->sortingLayer = SortingLayers::UI;
@@ -104,8 +104,9 @@ void SceneDev3::Enter()
 	sfxTimeOut.setBuffer(SOUNDBUFFER_MGR.Get(sbIdTimeOut));
 
 	player->SetSceneGame(this);
-	player2->SetSceneGame2(this);
-
+	player2->SetSceneGame(this);
+	player->SetSprite("graphics/player.png");
+	player2->SetSprite("graphics/player2.png");
 	Scene::Enter();
 
 	SetStatus(Status::Awake);
@@ -116,7 +117,9 @@ void SceneDev3::Exit()
 	std::cout << "SceneDev1::Exit()" << std::endl;
 
 	player->SetSceneGame(nullptr);
-	player2->SetSceneGame2(nullptr);
+	player2->SetSceneGame(nullptr);
+	tree->ClearEffectLog();
+	tree2->ClearEffectLog();
 
 	Scene::Exit();
 
@@ -307,7 +310,6 @@ void SceneDev3::OnChop(Sides side)
 	if (player->GetSide() == branchSide)
 	{
 		sfxDeath.play();
-
 		player->OnDie();
 		SetCenterMessage("2player Win!");
 		SetStatus(Status::GameOver);
@@ -322,18 +324,18 @@ void SceneDev3::OnChop(Sides side)
 
 void SceneDev3::OnChop2(Sides side)
 {
-	Sides branchSide2 = tree2->Chop2(side);
-	if (player2->GetSide() == branchSide2)
-	{
-		sfxDeath.play();
-
-		player2->OnDie();
-		SetCenterMessage("1player Win!");
-		SetStatus(Status::GameOver);
-	}
-	else
-	{
-		SetScore2(score2 + 100);
-		timer2 += 1.f;
-	}
+		Sides branchSide2 = tree2->Chop2(side);
+		if (player2->GetSide() == branchSide2)
+		{
+			sfxDeath.play();
+			player2->OnDie();
+			SetCenterMessage("1player Win!");
+			SetStatus(Status::GameOver);
+		}
+		else
+		{
+			SetScore2(score2 + 100);
+			timer2 += 1.f;
+		}
 }
+
