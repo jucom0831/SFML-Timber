@@ -28,5 +28,6 @@ void EffectGo::Effect(const sf::Vector2f& position, float duration, float speed)
 	SetActive(true);
 	SetPosition(position);
 	this->duration = duration;
+	playtime = 0;
 	this->speed = speed;
 }

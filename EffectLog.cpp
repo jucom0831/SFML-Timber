@@ -13,15 +13,20 @@ EffectLog::EffectLog(const std::string& texId, const std::string& name)
 {
 }
 
+bool EffectLog::IsSatisfiedCondition()
+{
+	return timer > duration;
+}
+
+void EffectLog::Reset()
+{
+	SpriteGo::Reset();
+	timer = 0;
+}
+
 void EffectLog::Update(float dt)
 {
 	timer += dt;
-	if (timer > duration)
-	{ 
-		SetActive(false);
-		return;
-	}
-
 	velocity += gravity * dt;
 	SetPosition(position + velocity * dt);
 }

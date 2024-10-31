@@ -4,9 +4,10 @@
 template<typename T>
 class ObjectPool
 {
-private:
+public:
 	std::list<T*> unused;
 	std::list<T*> used;
+private:
 	bool isObjectPoolable;
 	std::queue<T*> haveToErase;
 public:
@@ -27,6 +28,7 @@ public:
 			for (int i = 0; i < initSize; ++i)
 			{
 				auto obj = scene->AddGo(new T(*copy));
+				obj->Init();
 				unused.push_back(obj);
 			}
 			delete copy;
@@ -36,6 +38,7 @@ public:
 			for (int i = 0; i < initSize; ++i)
 			{
 				auto obj = scene->AddGo(new T());
+				obj->Init();
 				unused.push_back(obj);
 			}
 		}
@@ -84,7 +87,7 @@ public:
 		auto obj = unused.front();
 		unused.pop_front();
 		used.push_back(obj);
-		obj->SetActive(true);
+		//obj->SetActive(true);
 		obj->Reset();
 		return obj;
 	}
@@ -100,5 +103,22 @@ public:
 		obj->SetActive(false);
 		obj->Reset();
 		haveToErase.push(obj);
+	}
+
+	void Reset()
+	{
+		while (!used.empty())
+		{
+			auto obj = used.front();
+			obj->SetActive(false);
+			obj->Reset();
+			used.pop_front();
+			unused.push_back(obj);
+		}
+		for (auto& obj : unused)
+		{
+			obj->SetActive(false);
+			obj->Reset();
+		}
 	}
 };

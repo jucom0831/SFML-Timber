@@ -1,9 +1,10 @@
 #pragma once
 #include "GameObject.h"
 #include "EffectLog.h"
+#include "ParticleEffect.h"
+
 
 class Branch;
-
 class Tree : public GameObject
 {
 protected:
@@ -15,9 +16,8 @@ protected:
 	std::string branchTexId = "graphics/branch.png";
 
 	float brachOffsetY = 150.f;
-
 	ObjectPool<EffectLog> effectLogPool;
-	std::list<EffectLog*> logEffects;
+	ObjectPool<ParticleEffect> popEffectPool;
 
 public:
 	Tree(const std::string& name = "");
@@ -39,6 +39,5 @@ public:
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetScale(const sf::Vector2f& treescale);
 
-	void ClearEffectLog();
 };
 

@@ -10,7 +10,7 @@ protected:
 	bool active2 = true;
 
 	sf::Vector2f position;
-	sf::Vector2f scale;
+	sf::Vector2f scale = {1,1};
 
 	Origins originPreset;
 	sf::Vector2f origin;

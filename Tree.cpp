@@ -46,17 +46,11 @@ void Tree::Init()
 	}
 
 	effectLogPool.Init(owner, new EffectLog(), 10);
+	popEffectPool.Init(owner, nullptr, 10);
 }
 
 void Tree::Release()
 {
-	for (auto logEffect : logEffects)
-	{
-		effectLogPool.Return(logEffect);
-		SCENE_MGR.GetCurrentScene()->RemoveGo(logEffect);
-	}
-	logEffects.clear();
-
 	for (auto branch : branches)
 	{
 		branch->Release();
@@ -76,31 +70,19 @@ void Tree::Reset()
 	UpdateBranchPos();
 	auto lastBranch = branches.front();
 	lastBranch->SetSide(Sides::None);
+	effectLogPool.Reset();
+	popEffectPool.Reset();
 }
 
 void Tree::Update(float dt)
 {
-		for (auto branch : branches)
-		{
-			branch->Update(dt);
-		}
+	for (auto branch : branches)
+	{
+		branch->Update(dt);
+	}
 
-		auto it = logEffects.begin();
-		while (it != logEffects.end())
-		{
-			auto logEffect = *it;
-			if (!logEffect->IsActive())
-			{
-				effectLogPool.Return(logEffect);
-				SCENE_MGR.GetCurrentScene()->RemoveGo(logEffect);
-				it = logEffects.erase(it);
-			}
-			else
-			{
-				++it;
-			}
-		}
-	
+	effectLogPool.Update();
+	popEffectPool.Update();
 }
 
 void Tree::Draw(sf::RenderWindow& window)
@@ -124,30 +106,37 @@ void Tree::SetPosition(const sf::Vector2f& pos)
 
 void Tree::SetScale(const sf::Vector2f& treescale)
 {
+	sf::Vector2f prevscale= scale;
 	scale = treescale;
 	tree.setScale(treescale);
-}
-
-void Tree::ClearEffectLog()
-{
-	for (auto log : logEffects)
+	sf::Vector2f orginBranch;
+	orginBranch.x = tree.getGlobalBounds().width * -0.5f;
+	orginBranch.y = TEXTURE_MGR.Get(branchTexId).getSize().y * 0.5f;
+	for (auto& br : branches)
 	{
-		SCENE_MGR.GetCurrentScene()->RemoveGo(log);
-		effectLogPool.Return(log);
+		br->SetOrigin(orginBranch);
 	}
-	logEffects.clear();
+	for (auto& log : effectLogPool.used)
+	{
+		sf::Vector2f logscale = log->GetScale();
+		log->SetScale({ logscale .x*(scale.x/ prevscale .x),logscale.y * (scale.y / prevscale.y) });
+	}
+	for (auto& log : effectLogPool.unused)
+	{
+		sf::Vector2f logscale = log->GetScale();
+		log->SetScale({ logscale.x * (scale.x / prevscale.x),logscale.y * (scale.y / prevscale.y) });
+	}
 }
 
 Sides Tree::Chop(Sides side)
 {
 	if (side != Sides::None)
 	{
-			EffectLog* effect = effectLogPool.Take();
-			SCENE_MGR.GetCurrentScene()->AddGo(effect);
-			effect->SetOrigin(Origins::BC);
-			effect->SetPosition(position);
-			effect->Fire({ side == Sides::Right ? -1000.f : 1000.f, -1000.f });
-			logEffects.push_back(effect);
+		EffectLog* effect = effectLogPool.Take();
+		effect->SetOrigin(Origins::BC);
+		effect->SetPosition(position);
+		effect->Fire({ side == Sides::Right ? -1000.f : 1000.f, -1000.f });
+		popEffectPool.Take()->Effect({ position.x, position.y - 20 }, 2, 10);
 	}
 
 	Branch* temp = branches.front();

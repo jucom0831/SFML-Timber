@@ -16,7 +16,6 @@ protected:
 
 	SceneMgr() = default;
 	virtual ~SceneMgr() = default;
-
 	SceneMgr(const SceneMgr&) = delete;
 	SceneMgr& operator=(const SceneMgr&) = delete;
 

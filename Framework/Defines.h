@@ -15,6 +15,7 @@ enum class SceneIds
 	Dev1,
 	Dev2,
 	Dev3,
+	MultiGame,
 	Count,
 };
 

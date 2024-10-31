@@ -11,7 +11,6 @@
 #include "Tree2.h"
 #include "UiScore2.h"
 #include "UiTimebar2.h"
-#include "ParticleEffect.h"
 
 SceneDev3::SceneDev3() : Scene(SceneIds::Dev3)
 {
@@ -82,8 +81,6 @@ void SceneDev3::Init()
 	uiTimer2->SetOrigin(Origins::ML);
 	uiTimer2->SetPosition({ 1920.f / 1.3f - 250.f, 1080.f - 100.f });
 
-
-	popEffect.Init(this, nullptr, 10);
 }
 
 void SceneDev3::Enter()
@@ -120,8 +117,6 @@ void SceneDev3::Exit()
 
 	player->SetSceneGame(nullptr);
 	player2->SetSceneGame2(nullptr);
-	tree->ClearEffectLog();
-	tree2->ClearEffectLog();
 
 	Scene::Exit();
 
@@ -167,12 +162,6 @@ void SceneDev3::Update(float dt)
 		UpdatePause(dt);
 		break;
 	}
-
-	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	{
-		popEffect.Take()->Effect(sf::Vector2f(sf::Mouse::getPosition()), 3, 10);
-	}
-	popEffect.Update();
 }
 
 void SceneDev3::Draw(sf::RenderWindow& window)

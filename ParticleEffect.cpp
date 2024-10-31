@@ -18,11 +18,11 @@ ParticleEffect::~ParticleEffect()
 void ParticleEffect::SetPosition(const sf::Vector2f& pos)
 {
 	position = pos;
-	particle[0].setPosition({ position.x - offset.x * 0.2f, position.y - offset.y * 0.7f });
+	particle[0].setPosition({ position.x - offset.x * 0.2f, position.y - offset.y * 0.4f });
 	particle[1].setPosition({ position.x + offset.x * 0.8f, position.y + offset.y * 0.5f });
 	particle[2].setPosition({ position.x + offset.x * 1.2f, position.y - offset.y });
 	particle[3].setPosition({ position.x - offset.x, position.y + offset.y * 0.5f });
-	particle[4].setPosition({ position.x, position.y - offset.y * 0.8f });
+	particle[4].setPosition({ position.x, position.y - offset.y * 0.9f });
 }
 
 void ParticleEffect::SetScale(const sf::Vector2f& scale)
@@ -39,6 +39,7 @@ void ParticleEffect::SetScale(const sf::Vector2f& scale)
 void ParticleEffect::Init()
 {
 	EffectGo::Init();
+	SetActive(false);
 }
 
 void ParticleEffect::Reset()
@@ -53,12 +54,12 @@ void ParticleEffect::Reset()
 
 	particle[0].rotate(60);
 	particle[1].rotate(120);
-	particle[2].rotate(180);
+	particle[2].rotate(0);
 	particle[3].rotate(210);
 	particle[4].rotate(0);
 
 	particle[0].setScale(0.8f, 0.8f);
-	particle[1].setScale(1.6f, 1.6f);
+	particle[1].setScale(1.2f, 1.2f);
 	particle[2].setScale(1, 1);
 	particle[3].setScale(0.8f, 0.8f);
 	particle[4].setScale(1.2f, 1.2f);

@@ -1,6 +1,6 @@
 #pragma once
 #include "SpriteGo.h"
-class EffectLog : public SpriteGo
+class EffectLog : public SpriteGo, ObjectPoolable
 {
 protected:
 	sf::Vector2f gravity = { 0.f, 1000.f };
@@ -14,8 +14,9 @@ public:
 	EffectLog(const std::string& texId, const std::string& name = "");
 	~EffectLog() = default;
 
+	bool IsSatisfiedCondition();
+	void Reset();
 	void Update(float dt) override;
-
-	void Fire(sf::Vector2f v);
+	void Fire( sf::Vector2f v);
 };
 
