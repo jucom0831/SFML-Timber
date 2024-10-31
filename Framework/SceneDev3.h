@@ -2,7 +2,7 @@
 #pragma once
 #include "Scene.h"
 #include "ParticleEffect.h"
-
+#include "ButtonGo.h"
 class Tree;
 class Player;
 class TextGo;
@@ -52,7 +52,7 @@ protected:
 	std::string sbIdTimeOut = "sound/out_of_time.wav";
 
 	ObjectPool<ParticleEffect> popEffect;
-
+	ButtonGo* back;
 public:
 	SceneDev3();
 	~SceneDev3() = default;

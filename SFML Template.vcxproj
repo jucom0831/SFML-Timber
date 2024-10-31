@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="Branch2.cpp" />
+    <ClCompile Include="ButtonGo.cpp" />
     <ClCompile Include="CloudGo.cpp" />
     <ClCompile Include="EffectGo.cpp" />
     <ClCompile Include="EffectLog.cpp" />
@@ -170,6 +171,8 @@
     </ClCompile>
     <ClCompile Include="Framework\TextGo.cpp" />
     <ClCompile Include="Player2.cpp" />
+    <ClCompile Include="SceneModSelect.cpp" />
+    <ClCompile Include="SceneSelect.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Tree2.cpp" />
@@ -182,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Branch2.h" />
+    <ClInclude Include="ButtonGo.h" />
     <ClInclude Include="CloudGo.h" />
     <ClInclude Include="EffectGo.h" />
     <ClInclude Include="EffectLog2.h" />
@@ -204,6 +208,8 @@
     <ClInclude Include="Framework\stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
     <ClInclude Include="Player2.h" />
+    <ClInclude Include="SceneModSelect.h" />
+    <ClInclude Include="SceneSelect.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="Tree2.h" />
@@ -212,6 +218,9 @@
     <ClInclude Include="UiTimebar.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="UiTimebar2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

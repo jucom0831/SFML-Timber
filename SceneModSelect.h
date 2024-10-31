@@ -8,7 +8,9 @@ private:
 	std::string ModSelect;
 	ButtonGo* basicMod;
 	ButtonGo* twoMod;
+	ButtonGo* back;
 public:
+	
 	SceneModSelect();
 	~SceneModSelect() = default;
 

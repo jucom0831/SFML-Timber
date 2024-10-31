@@ -8,7 +8,6 @@
 void SceneMgr::Init()
 {
 	scenes.push_back(new SceneTitle());
-	scenes.push_back(new SceneDev1());
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneDev3());	
 	scenes.push_back(new SceneSelect());
@@ -19,7 +18,7 @@ void SceneMgr::Init()
 		scene->Init();
 	}
 
-	currentScene = SceneIds::Title;
+	currentScene = SceneIds::ModSelect;
 	scenes[(int)currentScene]->Enter();
 }
 

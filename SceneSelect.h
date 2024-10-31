@@ -8,6 +8,7 @@ private:
 	std::string Select;
 	ButtonGo* Player1;
 	ButtonGo* Player2;
+	ButtonGo* back;
 
 public:
 	SceneSelect();

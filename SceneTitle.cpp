@@ -27,21 +27,17 @@ void SceneTitle::Enter()
 	Scene::Enter();
 
 }
-
-void SceneTitle::Exit()
-{
-	std::cout << "SceneTitle::Exit()" << std::endl;
-	Scene::Exit();
-	TEXTURE_MGR.Unload("graphics/background1.png");
-}
-
 void SceneTitle::Update(float dt)
 {
 	Scene::Update(dt);
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
+	if (InputMgr::GetKeyDown(sf::Keyboard::Enter) || InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev1);
+		SCENE_MGR.ChangeScene(SceneIds::ModSelect);
+	}
+	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+	{
+		exit(0);
 	}
 }
 
@@ -49,3 +45,12 @@ void SceneTitle::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);
 }
+
+void SceneTitle::Exit()
+{
+	std::cout << "SceneTitle::Exit()" << std::endl;
+	Scene::Exit();
+	TEXTURE_MGR.Unload("graphics/background1.png");
+	
+}
+

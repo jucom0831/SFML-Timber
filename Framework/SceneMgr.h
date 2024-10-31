@@ -12,7 +12,7 @@ protected:
 	SceneIds startScene = SceneIds::Title;
 	SceneIds currentScene;
 
-	SceneIds nextScene = SceneIds::None;
+	SceneIds nextScene = SceneIds::Title;
 
 	SceneMgr() = default;
 	virtual ~SceneMgr() = default;

@@ -12,7 +12,6 @@ enum class SceneIds
 {
 	None = -1,
 	Title,
-	Dev1,
 	Dev2,
 	Dev3,
 	Select,
