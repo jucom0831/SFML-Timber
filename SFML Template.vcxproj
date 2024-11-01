@@ -170,12 +170,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Framework\TextGo.cpp" />
-    <ClCompile Include="Player2.cpp" />
+    <ClCompile Include="PlayerMulti.cpp" />
+    <ClCompile Include="SceneGame.cpp" />
     <ClCompile Include="SceneModSelect.cpp" />
     <ClCompile Include="SceneSelect.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Tree2.cpp" />
+    <ClCompile Include="UiAreaBound.cpp" />
     <ClCompile Include="UiScore.cpp" />
     <ClCompile Include="UiScore2.cpp" />
     <ClCompile Include="UiTimebar.cpp" />
@@ -207,12 +209,14 @@
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
-    <ClInclude Include="Player2.h" />
+    <ClInclude Include="PlayerMulti.h" />
+    <ClInclude Include="SceneGame.h" />
     <ClInclude Include="SceneModSelect.h" />
     <ClInclude Include="SceneSelect.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="Tree2.h" />
+    <ClInclude Include="UiAreaBound.h" />
     <ClInclude Include="UiScore.h" />
     <ClInclude Include="UiScore2.h" />
     <ClInclude Include="UiTimebar.h" />
