@@ -3,7 +3,7 @@
 #include "SpriteGo.h"
 #include "ButtonGo.h"
 #include "SceneMgr.h"
-#include "Player.h"
+#include "PlayerMulti.h"
 
 
 SceneSelect::SceneSelect() : Scene(SceneIds::Select)
@@ -55,14 +55,14 @@ void SceneSelect::Update(float dt)
 	Scene::Update(dt);
 	if (Player1->getisclicked())
 	{
-		Player::isplayer1 = true;
-		SCENE_MGR.ChangeScene(SceneIds::Dev3);
+		PlayerMulti::isplayer1 = true;
+		SCENE_MGR.ChangeScene(SceneIds::MultiGame);
 	}
 
 	if (Player2->getisclicked())
 	{
-		Player::isplayer1 = false;
-		SCENE_MGR.ChangeScene(SceneIds::Dev3);
+		PlayerMulti::isplayer1 = false;
+		SCENE_MGR.ChangeScene(SceneIds::MultiGame);
 	}
 	if (back->getisclicked() || InputMgr::GetKeyDown(sf::Keyboard::Escape))
 	{

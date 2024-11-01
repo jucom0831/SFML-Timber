@@ -77,6 +77,7 @@ void SceneGame::Init()
 	TEXTURE_MGR.Load("graphics/tree.png");
 	TEXTURE_MGR.Load("graphics/branch.png");
 	TEXTURE_MGR.Load("graphics/player.png");
+	TEXTURE_MGR.Load("graphics/player2.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
 	TEXTURE_MGR.Load("graphics/dust.png");
@@ -109,6 +110,7 @@ void SceneGame::Enter()
 	TEXTURE_MGR.Load("graphics/branch.png");
 	TEXTURE_MGR.Load("graphics/log.png");
 	TEXTURE_MGR.Load("graphics/player.png");
+	TEXTURE_MGR.Load("graphics/player2.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
 	TEXTURE_MGR.Load("graphics/dust.png");
@@ -126,6 +128,11 @@ void SceneGame::Enter()
 	}
 	Scene::Enter();
 	SetStatus(Status::Awake);
+
+	if (playerCnt == 1 && PlayerMulti::isplayer1 == false)
+	{
+		playerData[0].player->Reset();
+	}
 }
 
 void SceneGame::Exit()
@@ -139,6 +146,7 @@ void SceneGame::Exit()
 	TEXTURE_MGR.Unload("graphics/branch.png");
 	TEXTURE_MGR.Unload("graphics/log.png");
 	TEXTURE_MGR.Unload("graphics/player.png");
+	TEXTURE_MGR.Unload("graphics/player2.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
 	TEXTURE_MGR.Unload("graphics/dust.png");

@@ -171,7 +171,7 @@ void SceneDev3::Update(float dt)
 
 	if (back->getisclicked() || InputMgr::GetKeyDown(sf::Keyboard::Escape))
 	{
-		SCENE_MGR.ChangeScene(SceneIds::Select);
+		SCENE_MGR.ChangeScene(SceneIds::ModSelect);
 	}
 }
 

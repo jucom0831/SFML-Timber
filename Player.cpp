@@ -8,8 +8,6 @@ bool Player::isplayer1 = true;
 
 Player::Player(const std::string& name) : GameObject(name)
 {
-
-
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;
 }

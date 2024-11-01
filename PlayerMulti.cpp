@@ -2,6 +2,8 @@
 #include "PlayerMulti.h"
 #include "SceneGame.h"	
 
+bool PlayerMulti::isplayer1 = true;
+
 PlayerMulti::PlayerMulti(int number, const std::string& name) : GameObject(name)
 ,number(number)
 {
@@ -86,8 +88,10 @@ void PlayerMulti::Init()
 void PlayerMulti::Reset()
 {
 	sfxChop.setBuffer(SOUNDBUFFER_MGR.Get(sbIdChop));
-
+	if(isplayer1)
 	spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer));
+	else
+	spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer2));
 	spriteAxe.setTexture(TEXTURE_MGR.Get(texIdAxe));
 	spriteRip.setTexture(TEXTURE_MGR.Get(texIdRip));
 

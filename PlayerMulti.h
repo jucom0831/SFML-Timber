@@ -14,6 +14,7 @@ protected:
 
 	std::string sbIdChop = "sound/chop.wav";
 	std::string texIdPlayer = "graphics/player.png";
+	std::string texIdPlayer2 = "graphics/player2.png";
 	std::string texIdAxe = "graphics/axe.png";
 	std::string texIdRip = "graphics/rip.png";
 
@@ -32,6 +33,8 @@ protected:
 
 	SceneGame* sceneGame = nullptr;
 public:
+	static bool isplayer1;
+
 	PlayerMulti(int number=0, const std::string& name = "");
 	virtual ~PlayerMulti() = default;
 
