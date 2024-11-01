@@ -5,11 +5,6 @@ class ButtonGo : public SpriteGo
 private:
 	bool isclicked = false;
 	
-
-	
-	
-
-
 public:
 	bool getisclicked() const;
 	ButtonGo(const std::string& texId = "", const std::string& name = "");

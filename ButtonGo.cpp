@@ -21,12 +21,14 @@ void ButtonGo::Reset()
 
 void ButtonGo::Update(float dt)
 {
-	sf::Vector2f Mousepos = (sf::Vector2f)(sf::Mouse::getPosition(FRAMEWORK.GetWindow()));
+
+	sf::Vector2f Mousepos = InputMgr::GetGlobalMousePosition();
 	if(sprite.getGlobalBounds().contains(Mousepos) && InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 	{
-		std::cout << "Mouse Left click" << std::endl;
 		isclicked = true;
 	}
+	std::cout << Mousepos.x << std::endl;
+
 }
 
 void ButtonGo::Draw(sf::RenderWindow& window)

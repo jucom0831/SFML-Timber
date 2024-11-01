@@ -3,9 +3,12 @@
 #include "SpriteGo.h"
 
 void Framework::Init(int width, int height, const std::string& name)
+//반환하지 않음 프레임워크 초기화(3개 매개인자를 줘라[지역변수] int값 가로, int값 세로, 상수화시키는 네임?)
 {
 	window.create(sf::VideoMode(width, height), name);
+    // 윈도우 창 생성(비디오모드(가로, 세로), 윈도우 창 이름 적어놓는 곳)
     Utils::Init();
+    // 
     SCENE_MGR.Init();
     InputMgr::Init();
 }

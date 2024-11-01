@@ -56,6 +56,13 @@ void InputMgr::UpdateEvent(const sf::Event& ev)
 	}
 }
 
+sf::Vector2f InputMgr::GetGlobalMousePosition()
+{
+	sf::Vector2i pixelPos = sf::Mouse::getPosition(FRAMEWORK.GetWindow());
+	sf::Vector2f worldPos = FRAMEWORK.GetWindow().mapPixelToCoords(pixelPos);
+	return worldPos;
+}
+
 bool InputMgr::GetKeyDown(sf::Keyboard::Key key)
 {
 	return inputs[key] == KeyStatus::Down;
