@@ -4,6 +4,7 @@
 EffectLog::EffectLog()
 	: SpriteGo("graphics/log.png")
 {
+	TEXTURE_MGR.Load("graphics/log.png");
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 1;
 }
@@ -21,6 +22,7 @@ bool EffectLog::IsSatisfiedCondition()
 void EffectLog::Reset()
 {
 	SpriteGo::Reset();
+	SetActive(false);
 	timer = 0;
 }
 
@@ -33,6 +35,7 @@ void EffectLog::Update(float dt)
 
 void EffectLog::Fire(sf::Vector2f v)
 {
+	SetActive(true);
 	velocity = v;
 	timer = 0.f;
 }

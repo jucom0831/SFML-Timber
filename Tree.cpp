@@ -45,7 +45,7 @@ void Tree::Init()
 		branches.push_back(branch);
 	}
 
-	effectLogPool.Init(owner, new EffectLog(), 10);
+	effectLogPool.Init(owner, nullptr, 3);
 	popEffectPool.Init(owner, nullptr, 10);
 }
 

@@ -29,6 +29,7 @@ public:
 			{
 				auto obj = scene->AddGo(new T(*copy));
 				obj->Init();
+				obj->Reset();
 				unused.push_back(obj);
 			}
 			delete copy;
@@ -39,6 +40,7 @@ public:
 			{
 				auto obj = scene->AddGo(new T());
 				obj->Init();
+				obj->Reset();
 				unused.push_back(obj);
 			}
 		}
