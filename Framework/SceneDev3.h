@@ -1,7 +1,7 @@
 #include <stdafx.h>
 #pragma once
 #include "Scene.h"
-
+#include "ButtonGo.h"
 class Tree;
 class Player;
 class TextGo;
@@ -51,6 +51,7 @@ protected:
 	std::string sbIdTimeOut = "sound/out_of_time.wav";
 
 
+	ButtonGo* back;
 public:
 	SceneDev3();
 	~SceneDev3() = default;

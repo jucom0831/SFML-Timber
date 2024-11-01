@@ -1,10 +1,15 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "SceneDev1.h"	
+#include "SceneSelect.h"
+#include "ButtonGo.h"
 #include "SceneDev3.h"	
+
+bool Player::isplayer1 = true;
 
 Player::Player(const std::string& name) : GameObject(name)
 {
+
+
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;
 }
@@ -81,6 +86,17 @@ void Player::SetOrigin(const sf::Vector2f& newOrigin)
 
 void Player::Init()
 {
+	TEXTURE_MGR.Load(texIdPlayer);
+	TEXTURE_MGR.Load(texIdPlayer2);
+	if (isplayer1)
+	{
+		spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer));
+	}
+	else
+	{
+		spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer2));
+	}
+	SetOrigin(Origins::BC);
 
 	spriteAxe.setTexture(TEXTURE_MGR.Get(texIdAxe));
 	spriteAxe.setOrigin(originAxe);
@@ -91,9 +107,21 @@ void Player::Init()
 
 void Player::Reset()
 {
+	TEXTURE_MGR.Load(texIdPlayer);
+	TEXTURE_MGR.Load(texIdPlayer2);
 	sfxChop.setBuffer(SOUNDBUFFER_MGR.Get(sbIdChop));
-
-
+	
+	
+	if (isplayer1)
+	{
+		spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer));
+	}
+	else
+	{
+		spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer2));
+	}
+	SetOrigin(Origins::BC);
+	
 	spriteAxe.setTexture(TEXTURE_MGR.Get(texIdAxe));
 	spriteRip.setTexture(TEXTURE_MGR.Get(texIdRip));
 

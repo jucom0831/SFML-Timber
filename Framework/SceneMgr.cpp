@@ -3,6 +3,8 @@
 #include "SceneDev3.h"
 #include "SceneDev2.h"
 #include "SceneTitle.h"
+#include "SceneSelect.h"
+#include "SceneModSelect.h"
 #include "SceneGame.h"
 
 void SceneMgr::Init()
@@ -11,14 +13,15 @@ void SceneMgr::Init()
 	scenes.push_back(new SceneGame());
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneDev3());	
-	scenes.push_back(new SceneGame(3));
+	scenes.push_back(new SceneSelect());
+	scenes.push_back(new SceneModSelect());
 
 	for (auto scene : scenes)
 	{
 		scene->Init();
 	}
 
-	currentScene = SceneIds::Dev3;
+	currentScene = SceneIds::ModSelect;
 	scenes[(int)currentScene]->Enter();
 }
 

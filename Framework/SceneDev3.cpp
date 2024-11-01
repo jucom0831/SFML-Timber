@@ -24,7 +24,7 @@ void SceneDev3::Init()
 	obj->sortingOrder = -1;
 	obj->SetOrigin(Origins::MC);
 	obj->SetPosition({ 1920 / 2, 1080 / 2 });
-
+	back = AddGo(new ButtonGo("graphics/back.png"));
 	for (int i = 0; i < 3; ++i)
 	{
 		CloudGo* cloud = AddGo(new CloudGo("graphics/cloud.png"));
@@ -38,7 +38,7 @@ void SceneDev3::Init()
 	TEXTURE_MGR.Load("graphics/player2.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
-
+	TEXTURE_MGR.Load("graphics/back.png");
 	tree = AddGo(new Tree("Tree"));
 	tree2 = AddGo(new Tree2("Tree"));
 	player = AddGo(new Player("player"));
@@ -61,7 +61,8 @@ void SceneDev3::Init()
 	tree2->SetPosition({ 1920.f / 1.3f, 1080.f - 200.f });
 	player->SetPosition({ 1920.f / 4.5f, 1080.f - 200.f });
 	player2->SetPosition({ 1920.f / 1.3f, 1080.f - 200.f });
-
+	back->SetOrigin(Origins::TR);
+	back->SetPosition({ 1920,0 });
 	centerMsg->text.setCharacterSize(100);
 	centerMsg->text.setFillColor(sf::Color::White);
 	centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f });
@@ -95,6 +96,7 @@ void SceneDev3::Enter()
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
 	TEXTURE_MGR.Load("graphics/dust.png");
+	TEXTURE_MGR.Load("graphics/back.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Load("sound/chop.wav");
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
@@ -133,6 +135,7 @@ void SceneDev3::Exit()
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
 	TEXTURE_MGR.Unload("graphics/dust.png");
+	TEXTURE_MGR.Unload("graphics/back.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Unload("sound/chop.wav");
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
@@ -164,6 +167,11 @@ void SceneDev3::Update(float dt)
 	case SceneDev3::Status::Pause:
 		UpdatePause(dt);
 		break;
+	}
+
+	if (back->getisclicked() || InputMgr::GetKeyDown(sf::Keyboard::Escape))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Select);
 	}
 }
 
